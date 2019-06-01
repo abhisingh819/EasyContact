@@ -45,6 +45,9 @@ class APIManager:NSObject{
                     if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: AnyObject]] {
                         print(json)
                         completionHandler(json as AnyObject,nil)
+                    }else if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyObject] {
+                        print(json)
+                        completionHandler(json as AnyObject,nil)
                     }
                 } catch let error {
                     print(error.localizedDescription)

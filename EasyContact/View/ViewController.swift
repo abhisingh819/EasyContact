@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Contacts"
+        tblViewContact.delegate = self
         callAPI()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -31,14 +32,14 @@ class ViewController: UIViewController {
                     strongSelf.tblViewContact.reloadData()
                 })
             }else {
-                strongSelf.showAlert(message: "No Contacts were fetched", title: "Oops")
+                strongSelf.showAlert(message: "No Contacts were fetched", title: "There has been an issue")
             }
         }
     }
     
     func getImage(_ imageView:UIImageView,url:String)
     {
-        let imageUrl = "http://gojek-contacts-app.herokuapp.com\(url)"
+        let imageUrl = "\(Constants.BASE_URL)\(url)"
         let qualityOfServiceClass = DispatchQoS.QoSClass.background
         let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
         backgroundQueue.async(execute: {
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController:UITableViewDataSource {
+extension ViewController:UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -108,6 +109,10 @@ extension ViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if let contactDetailViewController = Storyboards.mainStoryboard().instantiateViewController(withIdentifier: "contactDetailViewController") as? ContactDetailViewController {
+            contactDetailViewController.userContactUrl = self.contacts[indexPath.row].url ?? ""
+            self.navigationController?.pushViewController(contactDetailViewController, animated: false)
+        }
     }
     
 

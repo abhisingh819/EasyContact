@@ -10,7 +10,6 @@ import Foundation
 
 class APIContacts:NSObject{
     
-    let BASE_URL = "http://gojek-contacts-app.herokuapp.com/"
     /**
      getContacts
      
@@ -18,7 +17,19 @@ class APIContacts:NSObject{
      */
     func getContacts(_ parameters:[String:AnyObject]?,_ completionHandler:@escaping ((AnyObject?,NSError?)->Void)){
         
-        APIHelper.makeRequest(urlString: "\(BASE_URL)contacts.json", verb: .GET, parameters: nil, headers: nil,type:"JSON",completionHandler: completionHandler)
+        APIHelper.makeRequest(urlString: "\(Constants.CONTACTS)", verb: .GET, parameters: nil, headers: nil,type:"JSON",completionHandler: completionHandler)
+        
+    }
+    
+    /**
+     getContactDetail
+     
+     - parameter url:                      (String)
+     - parameter completionHandler:        (AnyObject response, NSError)
+     */
+    func getContactDetail(_ url:String, parameters:[String:AnyObject]?,_ completionHandler:@escaping ((AnyObject?,NSError?)->Void)){
+        
+        APIHelper.makeRequest(urlString: url, verb: .GET, parameters: nil, headers: nil,type:"JSON",completionHandler: completionHandler)
         
     }
     
