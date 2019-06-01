@@ -33,4 +33,39 @@ class APIContacts:NSObject{
         
     }
     
+    /**
+     addContact
+     
+     - parameter completionHandler:        (AnyObject response, NSError)
+     */
+    func addContact(_ parameters:[String:AnyObject],_ completionHandler:@escaping ((AnyObject?,NSError?)->Void)){
+        
+        APIHelper.makeRequest(urlString: "\(Constants.CONTACTS)", verb: .POST, parameters: parameters, headers: nil,type:"JSON",completionHandler: completionHandler)
+        
+    }
+    
+    /**
+     updateContact
+     
+     - parameter url:                      (String)
+     - parameter completionHandler:        (AnyObject response, NSError)
+     */
+    func updateContact(_ url:String, parameters:[String:AnyObject],_ completionHandler:@escaping ((AnyObject?,NSError?)->Void)){
+        
+        APIHelper.makeRequest(urlString: url, verb: .PUT, parameters: parameters, headers: nil,type:"JSON",completionHandler: completionHandler)
+        
+    }
+    
+    /**
+     deleteContact
+     
+     - parameter url:                      (String)
+     - parameter completionHandler:        (AnyObject response, NSError)
+     */
+    func deleteContact(_ url:String,_ completionHandler:@escaping ((AnyObject?,NSError?)->Void)){
+        
+        APIHelper.makeRequest(urlString: url, verb: .DELETE, parameters: nil, headers: nil,type:"JSON",completionHandler: completionHandler)
+        
+    }
+    
 }

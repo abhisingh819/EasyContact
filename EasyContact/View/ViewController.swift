@@ -62,6 +62,14 @@ class ViewController: UIViewController {
         objAlertController.addAction(objAction)
         present(objAlertController, animated: true, completion: nil)
     }
+    
+    @IBAction func addContact(_ sender: Any) {
+        
+        if let editViewController = Storyboards.mainStoryboard().instantiateViewController(withIdentifier: "editViewController") as? EditViewController {
+            self.navigationController?.pushViewController(editViewController, animated: false)
+        }
+    }
+    
 
 }
 

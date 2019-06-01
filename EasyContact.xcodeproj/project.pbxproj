@@ -24,6 +24,8 @@
 		18D9996C22A2FD0A001E5E3C /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9996B22A2FD0A001E5E3C /* Storyboards.swift */; };
 		18D9996E22A30592001E5E3C /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9996D22A30592001E5E3C /* ContactDetailViewController.swift */; };
 		18D9997022A31A4E001E5E3C /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9996F22A31A4E001E5E3C /* ContactDetailViewModel.swift */; };
+		18D9997222A32FFD001E5E3C /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9997122A32FFD001E5E3C /* EditTableViewCell.swift */; };
+		18D9997422A330AE001E5E3C /* EditContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9997322A330AE001E5E3C /* EditContactViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		18D9996B22A2FD0A001E5E3C /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		18D9996D22A30592001E5E3C /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		18D9996F22A31A4E001E5E3C /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
+		18D9997122A32FFD001E5E3C /* EditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
+		18D9997322A330AE001E5E3C /* EditContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 				181B690222A2E829000C5950 /* ContactTableViewCell.swift */,
 				18D9996922A2FCC7001E5E3C /* EditViewController.swift */,
 				18D9996D22A30592001E5E3C /* ContactDetailViewController.swift */,
+				18D9997122A32FFD001E5E3C /* EditTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 			children = (
 				181B68FB22A2D478000C5950 /* ContactViewModel.swift */,
 				18D9996F22A31A4E001E5E3C /* ContactDetailViewModel.swift */,
+				18D9997322A330AE001E5E3C /* EditContactViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,12 +228,14 @@
 				18D9996C22A2FD0A001E5E3C /* Storyboards.swift in Sources */,
 				181B68F522A2B1D6000C5950 /* APIHelper.swift in Sources */,
 				18D9997022A31A4E001E5E3C /* ContactDetailViewModel.swift in Sources */,
+				18D9997422A330AE001E5E3C /* EditContactViewModel.swift in Sources */,
 				181B68FC22A2D478000C5950 /* ContactViewModel.swift in Sources */,
 				181B68F322A2B1A5000C5950 /* APIManager.swift in Sources */,
 				181B68E222A2B102000C5950 /* ViewController.swift in Sources */,
 				181B68F722A2B210000C5950 /* APIContacts.swift in Sources */,
 				18D9996822A2FACE001E5E3C /* Constants.swift in Sources */,
 				181B690122A2D9ED000C5950 /* ContactDetail.swift in Sources */,
+				18D9997222A32FFD001E5E3C /* EditTableViewCell.swift in Sources */,
 				18D9996E22A30592001E5E3C /* ContactDetailViewController.swift in Sources */,
 				181B690322A2E829000C5950 /* ContactTableViewCell.swift in Sources */,
 				181B68E022A2B102000C5950 /* AppDelegate.swift in Sources */,

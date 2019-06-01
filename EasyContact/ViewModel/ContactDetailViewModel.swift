@@ -10,11 +10,28 @@ import Foundation
 
 class ContactDetailViewModel {
     
+    let api = APIContacts()
     
     func getContactDetailFromAPI(_ url:String, completionHandler:@escaping (Bool,ContactDetail?) -> Void){
         
-        let api = APIContacts()
         api.getContactDetail(url, parameters: nil){(data:AnyObject?,error:NSError?) in
+            if error == nil {
+                if let jsonData = data as? [String:AnyObject] {
+                    var contact = ContactDetail()
+                    contact = ContactDetail.mapJSONToModel(json: jsonData)
+                    completionHandler(true,contact)
+                }
+                
+            }else {
+                completionHandler(false,nil)
+            }
+        }
+    }
+    
+    func deleteContact(_ url:String, completionHandler:@escaping (Bool,ContactDetail?) -> Void){
+        
+        
+        api.deleteContact(url){(data:AnyObject?,error:NSError?) in
             if error == nil {
                 if let jsonData = data as? [String:AnyObject] {
                     var contact = ContactDetail()

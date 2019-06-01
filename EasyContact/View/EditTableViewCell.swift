@@ -10,6 +10,9 @@ import UIKit
 
 class EditTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var txtContactValue: UITextField!
+    @IBOutlet weak var txtContactLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -21,6 +21,7 @@ class ContactDetailViewController: UIViewController {
     @IBOutlet weak var emailTxt: UILabel!
     
     let contactDetailViewModel = ContactDetailViewModel()
+    var contact: ContactDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class ContactDetailViewController: UIViewController {
             guard let strongSelf = self else { return }
             if success{
                 if let contactDetail = contact {
+                    strongSelf.contact = contactDetail
                     DispatchQueue.main.async(execute: { () -> Void in
                         strongSelf.emailTxt.text = contactDetail.email ?? ""
                         strongSelf.mobileTxt.text = contactDetail.phoneNumber ?? ""
@@ -82,7 +84,8 @@ class ContactDetailViewController: UIViewController {
         
         if let editViewController = Storyboards.mainStoryboard().instantiateViewController(withIdentifier: "editViewController") as? EditViewController {
             editViewController.userContactUrl = userContactUrl
-            self.present(editViewController,animated: false)
+            editViewController.contactDetail = self.contact
+            self.navigationController?.pushViewController(editViewController, animated: false)
         }
         
     }
