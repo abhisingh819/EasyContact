@@ -42,7 +42,8 @@ class APIManager:NSObject{
                     
                     // the data is returned in JSON format and needs to be converted into something that swift can work with
                     // we are converting it into a dictionary of type [String: Any]
-                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: AnyObject] {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: AnyObject]] {
+                        print(json)
                         completionHandler(json as AnyObject,nil)
                     }
                 } catch let error {

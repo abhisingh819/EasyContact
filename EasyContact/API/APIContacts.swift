@@ -10,14 +10,15 @@ import Foundation
 
 class APIContacts:NSObject{
     
+    let BASE_URL = "http://gojek-contacts-app.herokuapp.com/"
     /**
-     getFacilities
+     getContacts
      
      - parameter completionHandler:        (AnyObject response, NSError)
      */
     func getContacts(_ parameters:[String:AnyObject]?,_ completionHandler:@escaping ((AnyObject?,NSError?)->Void)){
         
-        APIHelper.makeRequest(urlString: "https://my-json-server.typicode.com/iranjith4/ad-assignment/db", verb: .GET, parameters: nil, headers: nil,type:"JSON",completionHandler: completionHandler)
+        APIHelper.makeRequest(urlString: "\(BASE_URL)contacts.json", verb: .GET, parameters: nil, headers: nil,type:"JSON",completionHandler: completionHandler)
         
     }
     
