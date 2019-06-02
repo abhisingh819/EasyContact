@@ -19,20 +19,27 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         title = "Contacts"
         tblViewContact.delegate = self
-        callAPI()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        callAPI()
     }
 
     func callAPI() {
         contactsViewModel.getContactsFromAPI{[weak self](success:Bool, contacts:[Contacts]) in
             guard let strongSelf = self else { return }
             if success{
+                strongSelf.contacts = []
                 strongSelf.contacts.append(contentsOf: contacts)
                 DispatchQueue.main.async(execute: { () -> Void in
                     strongSelf.tblViewContact.reloadData()
                 })
             }else {
-                strongSelf.showAlert(message: "No Contacts were fetched", title: "There has been an issue")
+                DispatchQueue.main.async(execute: { () -> Void in
+                    strongSelf.showAlert(message: "No Contacts were fetched", title: "There has been an issue")
+                })
             }
         }
     }

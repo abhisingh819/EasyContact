@@ -33,11 +33,7 @@ class ContactDetailViewModel {
         
         api.deleteContact(url){(data:AnyObject?,error:NSError?) in
             if error == nil {
-                if let jsonData = data as? [String:AnyObject] {
-                    var contact = ContactDetail()
-                    contact = ContactDetail.mapJSONToModel(json: jsonData)
-                    completionHandler(true,contact)
-                }
+                completionHandler(true, nil)
                 
             }else {
                 completionHandler(false,nil)

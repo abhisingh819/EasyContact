@@ -19,6 +19,7 @@
 		181B68FF22A2D530000C5950 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B68FE22A2D530000C5950 /* Contacts.swift */; };
 		181B690122A2D9ED000C5950 /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B690022A2D9ED000C5950 /* ContactDetail.swift */; };
 		181B690322A2E829000C5950 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181B690222A2E829000C5950 /* ContactTableViewCell.swift */; };
+		18CD9A4122A3E0A60076D45F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD9A4022A3E0A60076D45F /* Validation.swift */; };
 		18D9996822A2FACE001E5E3C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9996722A2FACE001E5E3C /* Constants.swift */; };
 		18D9996A22A2FCC7001E5E3C /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9996922A2FCC7001E5E3C /* EditViewController.swift */; };
 		18D9996C22A2FD0A001E5E3C /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D9996B22A2FD0A001E5E3C /* Storyboards.swift */; };
@@ -43,6 +44,7 @@
 		181B68FE22A2D530000C5950 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		181B690022A2D9ED000C5950 /* ContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
 		181B690222A2E829000C5950 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		18CD9A4022A3E0A60076D45F /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		18D9996722A2FACE001E5E3C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		18D9996922A2FCC7001E5E3C /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		18D9996B22A2FD0A001E5E3C /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				18D9996722A2FACE001E5E3C /* Constants.swift */,
 				18D9996B22A2FD0A001E5E3C /* Storyboards.swift */,
+				18CD9A4022A3E0A60076D45F /* Validation.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				181B68E222A2B102000C5950 /* ViewController.swift in Sources */,
 				181B68F722A2B210000C5950 /* APIContacts.swift in Sources */,
 				18D9996822A2FACE001E5E3C /* Constants.swift in Sources */,
+				18CD9A4122A3E0A60076D45F /* Validation.swift in Sources */,
 				181B690122A2D9ED000C5950 /* ContactDetail.swift in Sources */,
 				18D9997222A32FFD001E5E3C /* EditTableViewCell.swift in Sources */,
 				18D9996E22A30592001E5E3C /* ContactDetailViewController.swift in Sources */,

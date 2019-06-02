@@ -52,7 +52,9 @@ class ContactDetailViewController: UIViewController {
                     })
                 }
             }else {
-                strongSelf.showAlert(message: "No Contacts Detail was fetched", title: "There has been an issue")
+                DispatchQueue.main.async(execute: { () -> Void in
+                    strongSelf.showAlert(message: "No Contacts Detail was fetched", title: "There has been an issue",redirect: false)
+                })
             }
         }
     }
@@ -73,6 +75,18 @@ class ContactDetailViewController: UIViewController {
     }
     
     @IBAction func deleteContact(_ sender: UIButton) {
+        contactDetailViewModel.deleteContact(userContactUrl){[weak self](success:Bool, contact:ContactDetail?) in
+            guard let strongSelf = self else { return }
+            if success{
+                DispatchQueue.main.async(execute: { () -> Void in
+                    strongSelf.showAlert(message: "Contact Deleted Successfully", title: "Successful",redirect: true)
+                })
+            }else {
+                DispatchQueue.main.async(execute: { () -> Void in
+                    strongSelf.showAlert(message: "No Contacts Detail were deleted", title: "There has been an issue",redirect: false)
+                })
+            }
+        }
     }
     
     @IBAction func backToContacts(_ sender: Any) {
@@ -90,11 +104,14 @@ class ContactDetailViewController: UIViewController {
         
     }
     
-    func showAlert(message:String,title:String) {
+    func showAlert(message:String,title:String,redirect:Bool) {
         let objAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         let objAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:
-        {Void in
-            
+        {[weak self]Void in
+            guard let strongSelf = self else { return }
+            if redirect {
+                strongSelf.navigationController?.popViewController(animated: false)
+            }
             
         })
         
