@@ -23,11 +23,14 @@ class EditViewController: UIViewController {
     
     @IBOutlet weak var containerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerViewBottomContraint: NSLayoutConstraint!
+    @IBOutlet weak var editContactActivity: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tblViewEditContact.backgroundColor = UIColor.clear
+        self.editContactActivity.stopAnimating()
+        hideKeyboardWhenTappedAround()
         if userContactUrl != "", let detail = contactDetail {
             topicValues.append(detail.firstName ?? "")
             topicValues.append(detail.lastName ?? "")
@@ -38,6 +41,19 @@ class EditViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown(_:)) , name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let center:  NotificationCenter = NotificationCenter.default
+        center.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        center.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 
     @IBAction func goBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
@@ -120,16 +136,20 @@ class EditViewController: UIViewController {
     }
     
     func callUpdateApi(parameters:[String:AnyObject]){
+        self.editContactActivity.isHidden = false
+        self.editContactActivity.startAnimating()
         editContactViewModel.updateContact(userContactUrl,parameter: parameters){[weak self](success:Bool, contact:ContactDetail?) in
             guard let strongSelf = self else { return }
             if success{
                 if let contactDetail = contact {
                     DispatchQueue.main.async(execute: { () -> Void in
+                        strongSelf.editContactActivity.stopAnimating()
                         strongSelf.showAlert(message: "Contact with \(contactDetail.phoneNumber ?? "") was updated", title: "Successful", redirect: true)
                     })
                 }
             }else {
                 DispatchQueue.main.async(execute: { () -> Void in
+                    strongSelf.editContactActivity.stopAnimating()
                     strongSelf.showAlert(message: "No Contacts was updated", title: "There has been an issue",redirect: false)
                 })
             }
@@ -137,16 +157,20 @@ class EditViewController: UIViewController {
     }
     
     func callAddApi(parameters:[String:AnyObject]){
+        self.editContactActivity.isHidden = false
+        self.editContactActivity.startAnimating()
         editContactViewModel.addContact(parameters){[weak self](success:Bool, contact:ContactDetail?) in
             guard let strongSelf = self else { return }
             if success{
                 if let contactDetail = contact {
                     DispatchQueue.main.async(execute: { () -> Void in
+                        strongSelf.editContactActivity.stopAnimating()
                         strongSelf.showAlert(message: "New contact with \(contactDetail.phoneNumber ?? "") was created", title: "Successful", redirect: true)
                     })
                 }
             }else {
                 DispatchQueue.main.async(execute: { () -> Void in
+                    strongSelf.editContactActivity.stopAnimating()
                     strongSelf.showAlert(message: "No Contacts was created", title: "There has been an issue",redirect: false)
                 })
             }
@@ -167,6 +191,35 @@ class EditViewController: UIViewController {
         objAlertController.addAction(objAction)
         present(objAlertController, animated: true, completion: nil)
     }
+    
+    // MARK: Keyboard Delegate Methods
+    
+    @objc func keyboardWasShown (_ notification: Notification) {
+        adjustingHeight(true, notification: notification)
+    }
+    
+    @objc func keyboardWillBeHidden (_ notification: Notification) {
+        adjustingHeight(false, notification: notification)
+        
+    }
+    
+    func adjustingHeight(_ show:Bool, notification:Notification) {
+        
+        //        self.chatTextView.centerVertically()
+        if let userInfo = notification.userInfo,let keyboard = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,let animation = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval{
+            let keyboardFrame:CGRect = keyboard.cgRectValue
+            let animationDurarion = animation
+            let changeInHeight = (keyboardFrame.height) * (show ? 1 : 0)
+            UIView.animate(withDuration: animationDurarion/5, animations: {[weak self] () -> Void in
+                guard let strongSelf = self else { return }
+                strongSelf.containerViewBottomContraint.constant = changeInHeight/2
+                strongSelf.containerViewTopConstraint.constant = changeInHeight/2
+            })
+            self.view.layoutIfNeeded()
+        }
+        
+    }
+
     
     @IBAction func getPhoto(_ sender: UIButton) {
     }
@@ -212,8 +265,28 @@ extension EditViewController:UITableViewDataSource {
         }
         
     }
-    
-    
-    
 }
+
+extension EditViewController: UIGestureRecognizerDelegate
+{
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditViewController.dismissKeyboard))
+        tap.delegate = self
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view?.isKind(of: UIButton.self))! {
+            return false
+        }
+        
+        return true
+    }
+}
+
 

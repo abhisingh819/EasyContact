@@ -19,14 +19,20 @@ class ContactDetailViewController: UIViewController {
     
     @IBOutlet weak var mobileTxt: UILabel!
     @IBOutlet weak var emailTxt: UILabel!
+    @IBOutlet weak var contactActivity: UIActivityIndicatorView!
     
     let contactDetailViewModel = ContactDetailViewModel()
     var contact: ContactDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        callApi()
+        self.contactActivity.stopAnimating()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        callApi()
     }
     
     func callApi() {
@@ -75,14 +81,18 @@ class ContactDetailViewController: UIViewController {
     }
     
     @IBAction func deleteContact(_ sender: UIButton) {
+        self.contactActivity.isHidden = false
+        self.contactActivity.startAnimating()
         contactDetailViewModel.deleteContact(userContactUrl){[weak self](success:Bool, contact:ContactDetail?) in
             guard let strongSelf = self else { return }
             if success{
                 DispatchQueue.main.async(execute: { () -> Void in
+                    strongSelf.contactActivity.stopAnimating()
                     strongSelf.showAlert(message: "Contact Deleted Successfully", title: "Successful",redirect: true)
                 })
             }else {
                 DispatchQueue.main.async(execute: { () -> Void in
+                    strongSelf.contactActivity.stopAnimating()
                     strongSelf.showAlert(message: "No Contacts Detail were deleted", title: "There has been an issue",redirect: false)
                 })
             }

@@ -47,7 +47,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="favoriteIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Wtj-4V-Tlk">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" image="favoriteIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Wtj-4V-Tlk">
                                                     <rect key="frame" x="326" y="13" width="19" height="18"/>
                                                 </imageView>
                                             </subviews>
@@ -73,11 +73,16 @@
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="NeM-xW-VIn"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Fco-Ec-VC1">
+                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MtN-LI-khy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IJl-Se-emv"/>
                             <constraint firstItem="MtN-LI-khy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ms4-Tb-x8X"/>
+                            <constraint firstItem="Fco-Ec-VC1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Orj-38-0ZJ"/>
+                            <constraint firstItem="Fco-Ec-VC1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="bBW-kT-9K8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MtN-LI-khy" secondAttribute="trailing" id="oNX-8K-i3v"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MtN-LI-khy" secondAttribute="bottom" id="z9k-qX-4se"/>
                         </constraints>
@@ -95,6 +100,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="contactActivityIndicator" destination="Fco-Ec-VC1" id="vJB-Cu-95t"/>
                         <outlet property="tblViewContact" destination="MtN-LI-khy" id="TfR-1f-FMf"/>
                     </connections>
                 </viewController>
@@ -304,7 +310,7 @@
                                     <constraint firstAttribute="bottom" secondItem="tkh-DS-Wee" secondAttribute="bottom" constant="20" id="ZWQ-uW-n1j"/>
                                     <constraint firstItem="FBM-0i-hQk" firstAttribute="centerY" secondItem="tkh-DS-Wee" secondAttribute="centerY" id="blh-UC-ySc"/>
                                     <constraint firstItem="tkh-DS-Wee" firstAttribute="leading" secondItem="VDi-WW-ZuZ" secondAttribute="leading" constant="80" id="dw2-LH-oUH"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tkh-DS-Wee" secondAttribute="trailing" symbolic="YES" id="hxu-9J-0EE"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tkh-DS-Wee" secondAttribute="trailing" constant="20" symbolic="YES" id="hxu-9J-0EE"/>
                                     <constraint firstAttribute="trailing" secondItem="x42-Xi-wrc" secondAttribute="trailing" id="lfc-84-ikW"/>
                                     <constraint firstItem="x42-Xi-wrc" firstAttribute="leading" secondItem="VDi-WW-ZuZ" secondAttribute="leading" constant="20" id="u66-CT-P5y"/>
                                     <constraint firstAttribute="bottom" secondItem="x42-Xi-wrc" secondAttribute="bottom" id="xaj-b0-tyE"/>
@@ -369,6 +375,9 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="b8b-4k-u2e" secondAttribute="trailing" constant="20" symbolic="YES" id="tNR-g5-fHV"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rna-2Q-LFx">
+                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -377,8 +386,10 @@
                             <constraint firstItem="sjC-fz-hPu" firstAttribute="trailing" secondItem="VDi-WW-ZuZ" secondAttribute="trailing" id="LTn-UU-YUl"/>
                             <constraint firstItem="sjC-fz-hPu" firstAttribute="trailing" secondItem="nqG-Gv-CwD" secondAttribute="trailing" id="Sfz-rB-WqH"/>
                             <constraint firstItem="UZb-nt-FV4" firstAttribute="leading" secondItem="sjC-fz-hPu" secondAttribute="leading" id="ays-2L-dXE"/>
+                            <constraint firstItem="rna-2Q-LFx" firstAttribute="centerY" secondItem="sjC-fz-hPu" secondAttribute="centerY" id="gGD-1v-ArY"/>
                             <constraint firstItem="nqG-Gv-CwD" firstAttribute="top" secondItem="UZb-nt-FV4" secondAttribute="bottom" id="n7B-OW-U99"/>
                             <constraint firstItem="sjC-fz-hPu" firstAttribute="trailing" secondItem="UZb-nt-FV4" secondAttribute="trailing" id="ngy-yW-wVh"/>
+                            <constraint firstItem="rna-2Q-LFx" firstAttribute="centerX" secondItem="sjC-fz-hPu" secondAttribute="centerX" id="nhg-Wt-RCE"/>
                             <constraint firstItem="VDi-WW-ZuZ" firstAttribute="leading" secondItem="sjC-fz-hPu" secondAttribute="leading" id="pvy-Jb-WWv"/>
                             <constraint firstItem="nqG-Gv-CwD" firstAttribute="leading" secondItem="sjC-fz-hPu" secondAttribute="leading" id="s02-o0-f3E"/>
                             <constraint firstItem="pop-xm-p7i" firstAttribute="leading" secondItem="sjC-fz-hPu" secondAttribute="leading" id="tHZ-xY-Fs0"/>
@@ -403,6 +414,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="contactActivity" destination="rna-2Q-LFx" id="Dtk-M5-Qo8"/>
                         <outlet property="contactName" destination="EXu-QN-ptV" id="Jlq-5O-Kuv"/>
                         <outlet property="emailTxt" destination="ICn-FQ-icf" id="nIv-MG-vjc"/>
                         <outlet property="favoriteIconImage" destination="GOR-Py-oQt" id="BHS-Fb-RRS"/>
@@ -531,10 +543,15 @@
                                     <constraint firstItem="Fzb-2O-gbv" firstAttribute="leading" secondItem="ymr-Cg-4rh" secondAttribute="leading" id="tg3-UO-1u7"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cYL-Rc-41F">
+                                <rect key="frame" x="177.5" y="333.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ymr-Cg-4rh" firstAttribute="trailing" secondItem="iGs-Ak-ybS" secondAttribute="trailing" id="KCq-ro-Cy4"/>
+                            <constraint firstItem="cYL-Rc-41F" firstAttribute="centerX" secondItem="iGs-Ak-ybS" secondAttribute="centerX" id="KjZ-V9-O3r"/>
+                            <constraint firstItem="cYL-Rc-41F" firstAttribute="centerY" secondItem="iGs-Ak-ybS" secondAttribute="centerY" id="MqG-LG-dsz"/>
                             <constraint firstItem="iGs-Ak-ybS" firstAttribute="leading" secondItem="ymr-Cg-4rh" secondAttribute="leading" id="dmk-iy-WDb"/>
                             <constraint firstItem="iGs-Ak-ybS" firstAttribute="bottom" secondItem="ymr-Cg-4rh" secondAttribute="bottom" id="oHd-zq-Srd"/>
                             <constraint firstItem="iGs-Ak-ybS" firstAttribute="top" secondItem="ymr-Cg-4rh" secondAttribute="top" id="t1M-lb-Ggh"/>
@@ -558,6 +575,7 @@
                     <connections>
                         <outlet property="containerViewBottomContraint" destination="oHd-zq-Srd" id="p5O-Kg-dBs"/>
                         <outlet property="containerViewTopConstraint" destination="t1M-lb-Ggh" id="VWH-e4-r9v"/>
+                        <outlet property="editContactActivity" destination="cYL-Rc-41F" id="FQJ-60-qoW"/>
                         <outlet property="profilePicImg" destination="bgb-ib-p9h" id="52l-CN-Cqp"/>
                         <outlet property="tblViewEditContact" destination="zlF-Qe-hch" id="Plx-4H-faU"/>
                     </connections>
